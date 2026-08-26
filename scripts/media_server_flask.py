@@ -16,7 +16,7 @@ import json
 import hashlib
 import asyncio
 import threading
-from urllib.parse import quote_plus
+from urllib.parse import quote
 
 from flask import Flask, render_template, abort, jsonify, request
 from flask_socketio import SocketIO
@@ -62,7 +62,7 @@ def handle_api_list_files():
                 media_file_url = f"http://{frp_domain}/{media_file_name}"
                 media_file_url_with_query = "videourl=" + media_file_url
                 media_file_url_with_cs = f"&cks={generate_md5_checksum(media_file_url_with_query)}"
-                aiplayer_url = f"https://yun-hub.chat/link/?app=aipollo&clickid=12345&dplink={quote_plus(media_file_url_with_query + media_file_url_with_cs)}"
+                aiplayer_url = f"https://yun-hub.chat/link/?app=aipollo&clickid=12345&dplink={quote(media_file_url_with_query + media_file_url_with_cs)}"
                 txt += f"{media_file_name}: {aiplayer_url}\n"
         else:
             txt += "No media files found."
