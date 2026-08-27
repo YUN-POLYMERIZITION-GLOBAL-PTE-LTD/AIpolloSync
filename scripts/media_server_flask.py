@@ -62,7 +62,7 @@ def handle_api_list_files():
                 media_file_url = f"http://{frp_domain}/{media_file_name}"
                 media_file_url_with_query = "videourl=" + media_file_url
                 media_file_url_with_cs = f"&cks={generate_md5_checksum(media_file_url_with_query)}"
-                aiplayer_url = f"https://yun-hub.chat/link/?app=aipollo&clickid=12345&dplink={quote(media_file_url_with_query + media_file_url_with_cs)}"
+                aiplayer_url = f"https://yun-hub.chat/link/?app=aipollo&clickid=12345&dplink={quote(media_file_url_with_query + media_file_url_with_cs, safe='')}"
                 txt += f"{media_file_name}: {aiplayer_url}\n"
         else:
             txt += "No media files found."

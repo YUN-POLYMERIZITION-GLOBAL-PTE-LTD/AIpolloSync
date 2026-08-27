@@ -84,6 +84,12 @@ def download_frp():
             extracted = os.path.join(PROJECT_ROOT, frpc_member)
             if extracted != frpc_path:
                 os.rename(extracted, frpc_path)
+                frp_dir = os.path.dirname(frpc_member)
+                if frp_dir:
+                    try:
+                        os.rmdir(frp_dir)
+                    except:
+                        pass
 
         print(f"[FRP] frpc.exe v{FRP_VERSION} downloaded and verified successfully.")
         return True
